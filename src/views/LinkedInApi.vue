@@ -31,9 +31,10 @@
 import Vue from 'vue';
 import OwlCarousel from 'vue-owl-carousel';
 import axios from 'axios';
+
 import LinkedInSearchBar from '@/components/LinkedInSearchBar.vue';
 import { searchJobs } from '@/services/linkedinApi';
-import { LinkedInItem } from '@/types/linkedin';
+import { LinkedInItem, SearchParams } from '@/types/linkedin';
 
 export default Vue.extend({
   name: 'LinkedInCarousel',
@@ -62,11 +63,13 @@ export default Vue.extend({
       keywords: '',
       locationId: '92000000',
       datePosted: 'anyTime',
-      sort: 'mostRelevant',
+      sort: 'recent',
+      salary: '',
+      jobType: '',
     });
   },
   methods: {
-    async handleSearch(searchParams: any) {
+    async handleSearch(searchParams: SearchParams) {
       this.errorMessage = '';
       try {
         this.items = await searchJobs(searchParams);

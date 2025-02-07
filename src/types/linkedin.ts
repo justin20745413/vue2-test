@@ -1,5 +1,14 @@
+export interface SearchParams {
+  keywords: string;
+  locationId: string;
+  datePosted: string;
+  sort: string;
+  salary: string;
+  jobType: string;
+}
 export interface LinkedInItem {
   title: string;
+
   description: string;
   link: string;
   companyName: string;

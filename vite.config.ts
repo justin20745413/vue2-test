@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue2';
+import path from 'path';
 
 export default defineConfig({
   plugins: [vue()],
@@ -13,6 +14,11 @@ export default defineConfig({
         secure: false, // 如果 API 使用 HTTPS，但沒有 SSL 憑證，設為 false
         rewrite: path => path.replace(/^\/api/, ''), // 移除 "/api"，讓請求正確轉發
       },
+    },
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
     },
   },
 });
