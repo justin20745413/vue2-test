@@ -1,6 +1,6 @@
 export interface SearchParams {
   keywords: string;
-  locationId: string;
+  locationIds: string[];
   datePosted: string;
   sort: string;
   salary: string;

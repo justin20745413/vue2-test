@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 import Home from '../views/Home.vue';
 import LinkedInApi from '../views/LinkedInApi.vue';
+import AmazonApi from '../views/AmazonApi.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 
@@ -17,6 +18,11 @@ const routes: Array<RouteConfig> = [
     path: '/LinkedInApi',
     name: 'LinkedInApi',
     component: LinkedInApi,
+  },
+  {
+    path: '/AmazonApi',
+    name: 'AmazonApi',
+    component: AmazonApi,
   },
   {
     path: '/login',

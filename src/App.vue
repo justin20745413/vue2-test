@@ -3,10 +3,11 @@
     <v-app-bar app color="primary" dark>
       <v-toolbar-title>My App</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn text to="/" exact>Home</v-btn>
-      <v-btn text to="/LinkedInApi">LinkedInApi</v-btn>
+      <v-btn class="mr-4" text to="/" exact>Home</v-btn>
+      <v-btn class="mr-4" text to="/LinkedInApi">LinkedInApi</v-btn>
+      <v-btn class="mr-4" text to="/AmazonApi">AmazonApi</v-btn>
       <template v-if="!isAuthenticated">
-        <v-btn text to="/login">Login</v-btn>
+        <v-btn class="mr-4" text to="/login">Login</v-btn>
         <v-btn text to="/register">Register</v-btn>
       </template>
       <v-btn v-else text @click="handleLogout">Logout</v-btn>

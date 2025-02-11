@@ -16,14 +16,23 @@
             />
           </v-col>
           <v-col cols="12" sm="6" md="3">
-            <v-select
-              v-model="searchParams.locationId"
+            <v-combobox
+              v-model="searchParams.locationIds"
               :items="locations"
+              item-text="text"
+              item-value="value"
               label="地區"
+              multiple
               outlined
               dense
-            />
+              @change="handleLocationChange"
+            >
+              <template v-slot:selection="data">
+                <span v-if="(data.items || []).length > 3">+{{ data.items.length }} 項</span>
+              </template>
+            </v-combobox>
           </v-col>
+
           <v-col cols="12" sm="6" md="3">
             <v-select
               v-model="searchParams.jobType"
@@ -73,19 +82,17 @@ export default Vue.extend({
     return {
       searchParams: {
         keywords: '',
-        locationId: '92000000',
+        locationIds: [],
         datePosted: 'anyTime',
         sort: 'recent',
         salary: '',
         jobType: '',
       } as SearchParams,
       locations: [
-        { text: '台灣', value: '92000000' },
-
+        { text: '全台灣', value: '92000000' },
         { text: '台北', value: '90000084' },
         { text: '台中', value: '90000085' },
         { text: '台南', value: '90000086' },
-
         { text: '高雄', value: '90000087' },
         { text: '桃園', value: '90000088' },
         { text: '新竹', value: '90000089' },
@@ -138,6 +145,14 @@ export default Vue.extend({
   methods: {
     handleSubmit() {
       this.$emit('search', { ...this.searchParams });
+    },
+    handleLocationChange(selectedLocations: string[]) {
+      const allTaiwanValue = '92000000';
+      if (selectedLocations.includes(allTaiwanValue)) {
+        this.searchParams.locationIds = this.locations.map(location => location.value);
+      } else if (this.searchParams.locationIds.length === this.locations.length) {
+        this.searchParams.locationIds = [];
+      }
     },
   },
 });

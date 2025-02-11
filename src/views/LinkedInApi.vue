@@ -61,7 +61,7 @@ export default Vue.extend({
   async mounted() {
     await this.handleSearch({
       keywords: '',
-      locationId: '92000000',
+      locationIds: ['92000000'],
       datePosted: 'anyTime',
       sort: 'recent',
       salary: '',
